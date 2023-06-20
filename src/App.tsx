@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import { Display } from "./components/display/Display";
 
 type TCounter = {
   currentValue: number;
@@ -16,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>{counter.currentValue}</div>
+      <Display>{counter.currentValue}</Display>
       <button
         onClick={() =>
           setCounter({ ...counter, currentValue: counter.currentValue + 1 })
