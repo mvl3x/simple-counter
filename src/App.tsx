@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import { Display } from "./components/display/Display";
+import { Display } from "./components/Display/Display";
+import { Button } from "./components/Button/Button";
 
 type TCounter = {
   currentValue: number;
@@ -15,25 +16,26 @@ function App() {
     maxValue: 10,
   });
 
+  const handleCLickInc = () => {
+    setCounter({ ...counter, currentValue: counter.currentValue + 1 });
+  };
+
+  const handleClickReset = () => {
+    setCounter({ ...counter, currentValue: counter.minValue });
+  };
+
+  const isCurrentLesThanMax = counter.currentValue >= counter.maxValue;
+  const isCurrentGreaterThanMin = counter.currentValue <= counter.minValue;
+
   return (
     <div className="App">
       <Display>{counter.currentValue}</Display>
-      <button
-        onClick={() =>
-          setCounter({ ...counter, currentValue: counter.currentValue + 1 })
-        }
-        disabled={counter.currentValue === counter.maxValue}
-      >
+      <Button handleClick={handleCLickInc} disabled={isCurrentLesThanMax}>
         inc
-      </button>
-      <button
-        onClick={() =>
-          setCounter({ ...counter, currentValue: counter.minValue })
-        }
-        disabled={counter.currentValue === counter.minValue}
-      >
+      </Button>
+      <Button handleClick={handleClickReset} disabled={isCurrentGreaterThanMin}>
         reset
-      </button>
+      </Button>
     </div>
   );
 }
