@@ -1,0 +1,16 @@
+.display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height:  190px;
+    background-color: rgba(110, 228, 251, 1.00);
+    border-radius: 10px;
+    color: rgba(41, 43, 52, 1.00);
+    font-weight: bold; 
+    font-size: 80px;
+}
+
+.max {
+    font-size: 100px;
+    color: rgba(223, 0, 66, 1.00);
+}
