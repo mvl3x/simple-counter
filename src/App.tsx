@@ -3,7 +3,7 @@ import "./App.css";
 import { Display } from "./components/Display/Display";
 import { Button } from "./components/Button/Button";
 
-type TCounter = {
+export type TCounter = {
   currentValue: number;
   minValue: number;
   maxValue: number;
@@ -17,25 +17,32 @@ function App() {
   });
 
   const handleCLickInc = () => {
-    setCounter({ ...counter, currentValue: counter.currentValue + 1 });
+    setCounter((prev) => ({ ...prev, currentValue: prev.currentValue + 1 }));
   };
 
   const handleClickReset = () => {
-    setCounter({ ...counter, currentValue: counter.minValue });
+    setCounter((prev) => ({ ...prev, currentValue: prev.minValue }));
   };
 
   const isCurrentLesThanMax = counter.currentValue >= counter.maxValue;
   const isCurrentGreaterThanMin = counter.currentValue <= counter.minValue;
 
   return (
-    <div className="App">
-      <Display>{counter.currentValue}</Display>
-      <Button handleClick={handleCLickInc} disabled={isCurrentLesThanMax}>
-        inc
-      </Button>
-      <Button handleClick={handleClickReset} disabled={isCurrentGreaterThanMin}>
-        reset
-      </Button>
+    <div className="wrapper">
+      <div className="App">
+        <Display counter={counter}>{counter.currentValue}</Display>
+        <div className="buttons">
+          <Button handleClick={handleCLickInc} disabled={isCurrentLesThanMax}>
+            inc
+          </Button>
+          <Button
+            handleClick={handleClickReset}
+            disabled={isCurrentGreaterThanMin}
+          >
+            reset
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }
