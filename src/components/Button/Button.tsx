@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react";
+import s from "./Button.module.css";
 
 type TButtonProps = {
   handleClick: () => void;
@@ -12,7 +13,7 @@ export const Button: FC<TButtonProps> = ({
   children,
 }) => {
   return (
-    <button onClick={handleClick} disabled={disabled}>
+    <button className={s.button} onClick={handleClick} disabled={disabled}>
       {children}
     </button>
   );
